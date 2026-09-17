@@ -1,0 +1,78 @@
+project:
+  name: "qafzah_task2"
+  version: "1.0.0"
+
+paths:
+  data_dir: "data"
+  artifacts_dir: "data/artifacts"
+  models_dir: "models"
+  logs_dir: "logs"
+
+  train_data: "data/artifacts/train.csv"
+  validation_data: "data/artifacts/validation.csv"
+  test_data: "data/artifacts/test.csv"
+  geo_features: "data/artifacts/geo_features.csv"
+
+  model: "data/artifacts/final_model.joblib"
+  preprocessor: "data/artifacts/preprocessor.joblib"
+  feature_list: "data/artifacts/feature_list.csv"
+  model_metadata: "data/artifacts/final_model_metadata.json"
+
+model:
+  name: "RandomForestClassifier"
+  threshold: 0.51
+  class_weight:
+    "0": 1
+    "1": 7
+
+target:
+  column: "late"
+
+features:
+  numerical:
+    - "total_items"
+    - "total_price"
+    - "total_freight"
+    - "unique_products"
+    - "unique_sellers"
+    - "total_payments"
+    - "payment_count"
+    - "payment_types"
+    - "purchase_year"
+    - "purchase_month"
+    - "purchase_dayofweek"
+    - "purchase_hour"
+    - "geolocation_lat"
+    - "geolocation_lng"
+
+  categorical:
+    - "customer_state"
+
+preprocessing:
+  numerical:
+    imputer_strategy: "median"
+    scaler: "standard"
+
+  categorical:
+    imputer_strategy: "most_frequent"
+    encoder: "onehot"
+    handle_unknown: "ignore"
+
+geolocation:
+  source_key: "geolocation_zip_code_prefix"
+  target_key: "customer_zip_code_prefix"
+  latitude_column: "geolocation_lat"
+  longitude_column: "geolocation_lng"
+
+time_features:
+  source_column: "order_purchase_timestamp"
+  features:
+    - "purchase_year"
+    - "purchase_month"
+    - "purchase_dayofweek"
+    - "purchase_hour"
+
+logging:
+  level: "INFO"
+  file: "logs/app.log"
+  format: "%(asctime)s | %(levelname)s | %(name)s | %(message)s"

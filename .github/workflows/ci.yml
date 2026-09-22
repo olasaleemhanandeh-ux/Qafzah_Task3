@@ -26,6 +26,13 @@ jobs:
         if [ -f requirements/runtime.txt ]; then pip install -r requirements/runtime.txt; fi
         if [ -f requirements/dev.txt ]; then pip install -r requirements/dev.txt; fi
 
+    # 🔹 خطوة توليد أو تدريب النموذج والـ Artifacts قبل الاختبارات (عدلي الأمر بحسب سكربت المشروع لديكِ)
+    - name: Generate Model Artifacts
+      env:
+        PYTHONPATH: .
+      run: |
+        python src/train.py   # أو السكربت المسؤول عن إنشاء data/artifacts/
+
     - name: Run Pytest
       env:
         PYTHONPATH: .

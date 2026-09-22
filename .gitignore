@@ -1,47 +1,7 @@
-# Python
-__pycache__/
-*.py[cod]
-*.so
-
-# Virtual environments
 .venv/
-venv/
-env/
-
-# Testing and coverage
+__pycache__/
+*.pyc
 .pytest_cache/
-.coverage
-htmlcov/
-coverage.xml
-
-# Tooling
-.ruff_cache/
-.mypy_cache/
-
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-
-# Logs
-logs/*.log
-
-# Secrets and environment
-.env
-.env.*
-!.env.example
-
-# Jupyter
-.ipynb_checkpoints/
-
-# MLflow
+mlflow.db
 mlruns/
-
-# DVC cache
-.dvc/cache/
-
-# Temporary files
-*.tmp
-*.temp
+data/artifacts/

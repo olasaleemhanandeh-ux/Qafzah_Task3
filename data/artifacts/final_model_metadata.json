@@ -1,0 +1,10 @@
+{
+    "model": "RandomForestClassifier",
+    "class_weight": {
+        "0": 1,
+        "1": 7
+    },
+    "threshold": 0.51,
+    "validation_f1": 0.1908752327746741,
+    "test_f1": 0.05821025195482189
+}
